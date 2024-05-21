@@ -15,7 +15,7 @@ export interface IGenre {
 export interface FilterState {
   films: IFilm[];
   genres: IGenre[];
-  minRating: string;
+  minRating: string | number;
   sortOption: string;
   selectedGenres: number[];
   fetchFilms: (query?: string) => void;

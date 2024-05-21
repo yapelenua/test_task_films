@@ -5,9 +5,10 @@ import useFilterStore from '../../store/store';
 
 interface IProps {
   handleGenreChange: (event: SelectChangeEvent<number[]>) => void;
+  searchQuery: string
 }
 
-export const GenreFilter: React.FC<IProps> = ({ handleGenreChange }) => {
+export const GenreFilter: React.FC<IProps> = ({ handleGenreChange, searchQuery }) => {
   const {
     genres,
     selectedGenres,
@@ -19,6 +20,7 @@ export const GenreFilter: React.FC<IProps> = ({ handleGenreChange }) => {
         multiple
         value={selectedGenres}
         onChange={handleGenreChange}
+        disabled={searchQuery.length > 0}
         renderValue={(selected) => {
           const selectedGenreNames = (selected as number[]).map(id => genres.find(genre => genre.id === id)?.name).join(', ');
           return selectedGenreNames;

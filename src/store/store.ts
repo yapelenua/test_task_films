@@ -7,7 +7,7 @@ import { API_GET_FILMS, API_GET_SEARCH } from '../utils'
 const useFilterStore = create<FilterState>((set, get) => ({
   films: [],
   genres: [],
-  minRating: localStorage.getItem('minRating') || '',
+  minRating: localStorage.getItem('minRating') || 0,
   sortOption: localStorage.getItem('sortOption') || 'popularity.desc',
   selectedGenres: JSON.parse(localStorage.getItem('selectedGenres') || '[]'),
   fetchFilms: (query = '') => {
@@ -17,7 +17,7 @@ const useFilterStore = create<FilterState>((set, get) => ({
     const searchQueryParam = query ? `&query=${query}` : '';
     const fullUrl = query
       ? `${API_GET_SEARCH}${searchQueryParam}`
-      : `${API_GET_FILMS}${sortOption || 'popularity.desc'}${ratingQuery}${genreQuery}`;
+      : `${API_GET_FILMS}${sortOption || 'popularity.desc'}${ratingQuery || 0}${genreQuery}`;
 
     movieService.fetchFilms(fullUrl)
       .then((response) => {

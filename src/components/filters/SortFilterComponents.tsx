@@ -6,9 +6,10 @@ import useFilterStore from '../../store/store';
 
 interface IProps {
   handleSortChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  searchQuery: string
 }
 
-export const SortFilter: React.FC<IProps> = ({ handleSortChange,}) => {
+export const SortFilter: React.FC<IProps> = ({ handleSortChange, searchQuery }) => {
   const {
     minRating,
     sortOption,
@@ -23,7 +24,7 @@ export const SortFilter: React.FC<IProps> = ({ handleSortChange,}) => {
       variant="outlined"
       margin="normal"
       sx={{ width: 200 }}
-      disabled={!minRating && selectedGenres.length === 0}
+      disabled={!minRating && selectedGenres.length === 0 && searchQuery.length >= 0}
     >
       <MenuItem value="popularity.desc">Popularity Descending</MenuItem>
       <MenuItem value="popularity.asc">Popularity Ascending</MenuItem>

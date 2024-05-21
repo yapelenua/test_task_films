@@ -32,8 +32,8 @@ export const Filters: React.FC<IProps> = ({ searchQuery }) => {
   return (
     <div className="filters" style={{ display: 'flex', flexDirection: 'row', marginLeft: '90px', marginRight: '90px' }}>
       <RatingFilter searchQuery={searchQuery} handleRatingChange={handleRatingChange} />
-      <SortFilter handleSortChange={handleSortChange} />
-      <GenreFilter handleGenreChange={handleGenreChange} />
+      <SortFilter searchQuery={searchQuery}  handleSortChange={handleSortChange} />
+      <GenreFilter searchQuery={searchQuery} handleGenreChange={handleGenreChange} />
     </div>
   );
 };
